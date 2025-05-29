@@ -1,250 +1,243 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2822
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset178 GeezaPro;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh9000\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مصنف الأجهزة</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #e6f7ff, #fff9e6); /* Light blue to light yellow gradient */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            color: #333;
+        }
 
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="ar" dir="rtl">\
-<head>\
-    <meta charset="UTF-8">\
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <title>\'e3\'d5\'e4\'dd \'c7\'e1\'c3\'cc\'e5\'d2\'c9</title>\
-    <style>\
-        body \{\
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\
-            background: linear-gradient(to bottom, #e6f7ff, #fff9e6); /* Light blue to light yellow gradient */\
-            display: flex;\
-            flex-direction: column;\
-            align-items: center;\
-            justify-content: center;\
-            min-height: 100vh;\
-            margin: 0;\
-            padding: 20px;\
-            text-align: center;\
-            color: #333;\
-        \}\
-\
-        .container \{\
-            background-color: rgba(255, 255, 255, 0.9);\
-            padding: 25px;\
-            border-radius: 10px;\
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);\
-            width: 100%;\
-            max-width: 500px;\
-        \}\
-\
-        h1 \{\
-            color: #e91e63; /* Pinkish color similar to image */\
-            margin-bottom: 10px;\
-            font-size: 1.8em;\
-        \}\
-\
-        .instruction-text \{\
-            color: #555;\
-            margin-bottom: 20px;\
-            font-size: 0.95em;\
-        \}\
-\
-        #imageUpload \{\
-            display: block;\
-            margin: 0 auto 15px auto;\
-            padding: 8px 12px;\
-            border: 1px solid #ccc;\
-            border-radius: 5px;\
-            cursor: pointer;\
-        \}\
-        \
-        /* Hide the default file input text and button for a more custom approach if desired later */\
-        /* input[type="file"] \{ display: none; \} */\
-        /* .custom-file-upload \{ ... \} */\
-\
-\
-        .image-preview-dashed \{\
-            border: 2px dashed #007bff; /* Dashed border color */\
-            min-height: 150px;\
-            width: 90%;\
-            max-width: 300px;\
-            margin: 0 auto 15px auto;\
-            display: flex;\
-            align-items: center;\
-            justify-content: center;\
-            padding: 10px;\
-            border-radius: 5px;\
-            background-color: #f8f9fa;\
-        \}\
-\
-        #imagePreview \{\
-            max-width: 100%;\
-            max-height: 200px;\
-            object-fit: contain;\
-            border-radius: 3px;\
-        \}\
-\
-        #imagePreviewPlaceholder \{\
-            color: #888;\
-            font-size: 0.9em;\
-        \}\
-\
-        #modelStatusLoading,\
-        #modelStatusSuccess \{\
-            margin-top: 15px;\
-            font-weight: bold;\
-            font-size: 1em;\
-        \}\
-\
-        #modelStatusSuccess \{\
-            color: #28a745; /* Green color for success */\
-        \}\
-        \
-        #modelStatusError \{\
-            color: #dc3545; /* Red for error */\
-            margin-top: 10px;\
-        \}\
-\
-        .results-container \{\
-            margin-top: 20px;\
-            text-align: right; /* For RTL predictions */\
-        \}\
-\
-        .prediction-item \{\
-            background-color: #e9ecef;\
-            padding: 8px 12px;\
-            margin-bottom: 8px;\
-            border-radius: 5px;\
-            font-size: 0.95em;\
-            border-right: 4px solid #007bff; /* Accent border */\
-        \}\
-        \
-        footer \{\
-            margin-top: 30px;\
-            color: #777;\
-            font-size: 0.8em;\
-        \}\
-    </style>\
-</head>\
-<body>\
-    <div class="container">\
-        <h1>\uc0\u55356 \u57171  \'e3\'d5\'e4\'dd \'c7\'e1\'c3\'cc\'e5\'d2\'c9 \'c8\'c7\'d3\'ca\'ce\'cf\'c7\'e3 Teachable Machine</h1>\
-        <p class="instruction-text">\'de\'e3 \'c8\'d1\'dd\'da \'d5\'e6\'d1\'c9 \'cc\'e5\'c7\'d2 \'e1\'ca\'d5\'e4\'ed\'dd\'e5 (\'cc\'e6\'c7\'e1\'a1 \'ca\'c7\'c8\'e1\'ca\'a1 \'e1\'c7\'c8\'ca\'e6\'c8)</p>\
-\
-        <input type="file" id="imageUpload" accept="image/*" disabled>\
-\
-        <div id="imagePreviewDashedBox" class="image-preview-dashed">\
-            <img id="imagePreview" src="#" alt="\'e3\'da\'c7\'ed\'e4\'c9 \'c7\'e1\'d5\'e6\'d1\'c9" style="display:none;"/>\
-            <span id="imagePreviewPlaceholder">\'d3\'ed\'ca\'e3 \'da\'d1\'d6 \'c7\'e1\'d5\'e6\'d1\'c9 \'e5\'e4\'c7</span>\
-        </div>\
-\
-        <div id="modelStatusLoading">\'cc\'c7\'d1\'ed \'ca\'cd\'e3\'ed\'e1 \'c7\'e1\'e4\'e3\'e6\'d0\'cc\'a1 \'ed\'d1\'cc\'ec \'c7\'e1\'c7\'e4\'ca\'d9\'c7\'d1...</div>\
-        <div id="modelStatusSuccess" style="display:none;">\'c7\'e1\'e4\'e3\'e6\'d0\'cc \'ca\'e3 \'ca\'cd\'e3\'ed\'e1\'e5 \'c8\'e4\'cc\'c7\'cd \uc0\u9989 </div>\
-        <div id="modelStatusError" style="display:none;"></div>\
-        \
-        <div id="label-container" class="results-container"></div>\
-        \
-        <footer>\'ca\'d5\'e3\'ed\'e3 \'c8\'e6\'c7\'d3\'d8\'c9 \'c7\'e1\'d0\'df\'c7\'c1 \'c7\'e1\'c7\'d5\'d8\'e4\'c7\'da\'ed (\'c8\'e3\'d3\'c7\'da\'cf\'ca\'df!)</footer>\
-    </div>\
-\
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>\
-    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>\
-    <script type="text/javascript">\
-        const URL = "https://teachablemachine.withgoogle.com/models/BsSMJKD_bh/"; // Your model URL\
-\
-        let model, labelContainer, maxPredictions;\
-        const imageUploadInput = document.getElementById('imageUpload');\
-        const imagePreview = document.getElementById('imagePreview');\
-        const imagePreviewPlaceholder = document.getElementById('imagePreviewPlaceholder');\
-        const modelStatusLoading = document.getElementById('modelStatusLoading');\
-        const modelStatusSuccess = document.getElementById('modelStatusSuccess');\
-        const modelStatusError = document.getElementById('modelStatusError');\
-        labelContainer = document.getElementById("label-container");\
-\
-        // Load the image model\
-        async function init() \{\
-            const modelURL = URL + "model.json";\
-            const metadataURL = URL + "metadata.json";\
-\
-            try \{\
-                model = await tmImage.load(modelURL, metadataURL);\
-                maxPredictions = model.getTotalClasses();\
-\
-                modelStatusLoading.style.display = 'none';\
-                modelStatusSuccess.style.display = 'block';\
-                modelStatusError.style.display = 'none';\
-                imageUploadInput.disabled = false; // Enable file input\
-\
-                // Prepare label container (though it's better to populate it on predict)\
-                // labelContainer.innerHTML = ''; // Clear any previous labels\
-                // for (let i = 0; i < maxPredictions; i++) \{\
-                //     const div = document.createElement("div");\
-                //     div.classList.add('prediction-item');\
-                //     labelContainer.appendChild(div);\
-                // \}\
-\
-            \} catch (error) \{\
-                console.error("Error loading the model:", error);\
-                modelStatusLoading.style.display = 'none';\
-                modelStatusSuccess.style.display = 'none';\
-                modelStatusError.textContent = "\'dd\'d4\'e1 \'ca\'cd\'e3\'ed\'e1 \'c7\'e1\'e4\'e3\'e6\'d0\'cc. \'ca\'cd\'de\'de \'e3\'e4 \'c7\'e1\'d1\'c7\'c8\'d8 \'c3\'e6 \'c7\'ca\'d5\'c7\'e1\'df \'c8\'c7\'e1\'c5\'e4\'ca\'d1\'e4\'ca.";\
-                modelStatusError.style.display = 'block';\
-                imageUploadInput.disabled = true;\
-            \}\
-        \}\
-\
-        // Handle image upload and prediction\
-        imageUploadInput.addEventListener('change', async (event) => \{\
-            if (!model) \{\
-                modelStatusError.textContent = "\'c7\'e1\'e4\'e3\'e6\'d0\'cc \'db\'ed\'d1 \'cc\'c7\'e5\'d2 \'c8\'da\'cf.";\
-                modelStatusError.style.display = 'block';\
-                return;\
-            \}\
-            const file = event.target.files[0];\
-            if (file) \{\
-                const reader = new FileReader();\
-                reader.onload = async function(e) \{\
-                    imagePreview.src = e.target.result;\
-                    imagePreview.style.display = 'block';\
-                    imagePreviewPlaceholder.style.display = 'none';\
-                    \
-                    // Clear previous predictions\
-                    labelContainer.innerHTML = ""; \
-                    await predict(imagePreview);\
-                \}\
-                reader.readAsDataURL(file);\
-            \} else \{\
-                imagePreview.style.display = 'none';\
-                imagePreview.src = '#'; // Clear src\
-                imagePreviewPlaceholder.style.display = 'block';\
-                labelContainer.innerHTML = ""; // Clear predictions\
-            \}\
-        \});\
-\
-        // Run the uploaded image through the image model\
-        async function predict(imageElement) \{\
-            if (!model) \{\
-                console.error("Model not loaded yet for prediction.");\
-                return;\
-            \}\
-            const prediction = await model.predict(imageElement);\
-            // Clear previous and create new ones\
-            labelContainer.innerHTML = ''; \
-\
-            // Sort predictions by probability (highest first)\
-            prediction.sort((a, b) => b.probability - a.probability);\
-\
-            for (let i = 0; i < maxPredictions; i++) \{\
-                if (prediction[i]) \{\
-                    const classPrediction = prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(1) + "%";\
-                    const div = document.createElement("div");\
-                    div.classList.add('prediction-item');\
-                    div.innerHTML = classPrediction;\
-                    labelContainer.appendChild(div);\
-                \}\
-            \}\
-        \}\
-\
-        // Initialize the model when the window loads\
-        window.onload = init;\
-    </script>\
-</body>\
-</html>}
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #e91e63; /* Pinkish color similar to image */
+            margin-bottom: 10px;
+            font-size: 1.8em;
+        }
+
+        .instruction-text {
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        #imageUpload {
+            display: block;
+            margin: 0 auto 15px auto;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        /* Hide the default file input text and button for a more custom approach if desired later */
+        /* input[type="file"] { display: none; } */
+        /* .custom-file-upload { ... } */
+
+
+        .image-preview-dashed {
+            border: 2px dashed #007bff; /* Dashed border color */
+            min-height: 150px;
+            width: 90%;
+            max-width: 300px;
+            margin: 0 auto 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+
+        #imagePreview {
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 3px;
+        }
+
+        #imagePreviewPlaceholder {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        #modelStatusLoading,
+        #modelStatusSuccess {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        #modelStatusSuccess {
+            color: #28a745; /* Green color for success */
+        }
+        
+        #modelStatusError {
+            color: #dc3545; /* Red for error */
+            margin-top: 10px;
+        }
+
+        .results-container {
+            margin-top: 20px;
+            text-align: right; /* For RTL predictions */
+        }
+
+        .prediction-item {
+            background-color: #e9ecef;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            font-size: 0.95em;
+            border-right: 4px solid #007bff; /* Accent border */
+        }
+        
+        footer {
+            margin-top: 30px;
+            color: #777;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍓 مصنف الأجهزة باستخدام Teachable Machine</h1>
+        <p class="instruction-text">قم برفع صورة جهاز لتصنيفه (جوال، تابلت، لابتوب)</p>
+
+        <input type="file" id="imageUpload" accept="image/*" disabled>
+
+        <div id="imagePreviewDashedBox" class="image-preview-dashed">
+            <img id="imagePreview" src="#" alt="معاينة الصورة" style="display:none;"/>
+            <span id="imagePreviewPlaceholder">سيتم عرض الصورة هنا</span>
+        </div>
+
+        <div id="modelStatusLoading">جاري تحميل النموذج، يرجى الانتظار...</div>
+        <div id="modelStatusSuccess" style="display:none;">النموذج تم تحميله بنجاح ✅</div>
+        <div id="modelStatusError" style="display:none;"></div>
+        
+        <div id="label-container" class="results-container"></div>
+        
+        <footer>تصميم بواسطة الذكاء الاصطناعي (بمساعدتك!)</footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script type="text/javascript">
+        const URL = "https://teachablemachine.withgoogle.com/models/BsSMJKD_bh/"; // Your model URL
+
+        let model, labelContainer, maxPredictions;
+        const imageUploadInput = document.getElementById('imageUpload');
+        const imagePreview = document.getElementById('imagePreview');
+        const imagePreviewPlaceholder = document.getElementById('imagePreviewPlaceholder');
+        const modelStatusLoading = document.getElementById('modelStatusLoading');
+        const modelStatusSuccess = document.getElementById('modelStatusSuccess');
+        const modelStatusError = document.getElementById('modelStatusError');
+        labelContainer = document.getElementById("label-container");
+
+        // Load the image model
+        async function init() {
+            const modelURL = URL + "model.json";
+            const metadataURL = URL + "metadata.json";
+
+            try {
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
+
+                modelStatusLoading.style.display = 'none';
+                modelStatusSuccess.style.display = 'block';
+                modelStatusError.style.display = 'none';
+                imageUploadInput.disabled = false; // Enable file input
+
+                // Prepare label container (though it's better to populate it on predict)
+                // labelContainer.innerHTML = ''; // Clear any previous labels
+                // for (let i = 0; i < maxPredictions; i++) {
+                //     const div = document.createElement("div");
+                //     div.classList.add('prediction-item');
+                //     labelContainer.appendChild(div);
+                // }
+
+            } catch (error) {
+                console.error("Error loading the model:", error);
+                modelStatusLoading.style.display = 'none';
+                modelStatusSuccess.style.display = 'none';
+                modelStatusError.textContent = "فشل تحميل النموذج. تحقق من الرابط أو اتصالك بالإنترنت.";
+                modelStatusError.style.display = 'block';
+                imageUploadInput.disabled = true;
+            }
+        }
+
+        // Handle image upload and prediction
+        imageUploadInput.addEventListener('change', async (event) => {
+            if (!model) {
+                modelStatusError.textContent = "النموذج غير جاهز بعد.";
+                modelStatusError.style.display = 'block';
+                return;
+            }
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = async function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                    imagePreviewPlaceholder.style.display = 'none';
+                    
+                    // Clear previous predictions
+                    labelContainer.innerHTML = ""; 
+                    await predict(imagePreview);
+                }
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.style.display = 'none';
+                imagePreview.src = '#'; // Clear src
+                imagePreviewPlaceholder.style.display = 'block';
+                labelContainer.innerHTML = ""; // Clear predictions
+            }
+        });
+
+        // Run the uploaded image through the image model
+        async function predict(imageElement) {
+            if (!model) {
+                console.error("Model not loaded yet for prediction.");
+                return;
+            }
+            const prediction = await model.predict(imageElement);
+            // Clear previous and create new ones
+            labelContainer.innerHTML = ''; 
+
+            // Sort predictions by probability (highest first)
+            prediction.sort((a, b) => b.probability - a.probability);
+
+            for (let i = 0; i < maxPredictions; i++) {
+                if (prediction[i]) {
+                    const classPrediction = prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(1) + "%";
+                    const div = document.createElement("div");
+                    div.classList.add('prediction-item');
+                    div.innerHTML = classPrediction;
+                    labelContainer.appendChild(div);
+                }
+            }
+        }
+
+        // Initialize the model when the window loads
+        window.onload = init;
+    </script>
+</body>
+</html>
